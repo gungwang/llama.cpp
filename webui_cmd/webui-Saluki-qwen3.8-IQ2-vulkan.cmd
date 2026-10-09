@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "BIN=%~dp0..\..\build-arc-a770-vulkan-release\bin"
+set "BIN=%~dp0..\build-arc-a770-vulkan-release\bin"
 set "PATH=%BIN%;%PATH%"
 
 pushd "%BIN%"

@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "BIN=%~dp0"
+set "BIN=%~dp0..\build-arc-a770-sycl-release\bin"
 set "ONEAPI_ROOT=C:\Program Files (x86)\Intel\oneAPI"
 set "PATH=%BIN%;%ONEAPI_ROOT%\compiler\latest\bin;%ONEAPI_ROOT%\mkl\latest\bin;%ONEAPI_ROOT%\dnnl\latest\bin;%ONEAPI_ROOT%\tbb\latest\bin;%ONEAPI_ROOT%\umf\latest\bin;%ONEAPI_ROOT%\ocloc\latest\bin;%PATH%"
 set "SYCL_DEVICE_FILTER=level_zero:gpu:0"
