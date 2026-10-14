@@ -13,7 +13,7 @@ set "GGML_SYCL_ENABLE_MKL_FA=1"
 
 pushd "%BIN%"
 
-llama-server.exe -m "C:\AI\LlamaCPP\Qwen3.5-9B-The-Defiant-Fable-Uncnr-Heretic-NEO-MAX-MTP-IQ4_XS.gguf" -mm "C:\AI\LlamaCPP\mmproj-NEO-MAX-MTP-IQ4_XS-BF16.gguf" -ngl 999 -sm none -mg 0 -fa on -b 2048 -ub 512 -ctk q8_0 -ctv q4_0 -c 40960 -np 1 -n 18192 -t 16 -tb 16 --spec-type draft-mtp --spec-draft-n-max 2 --temp 0.7 --top-p 0.80 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0 --host 127.0.0.1 --port 8080 %*
+llama-server.exe -m "C:\AI\LlamaCPP\Qwen3.5-9B-The-Defiant-Fable-Uncnr-Heretic-NEO-MAX-MTP-IQ4_XS.gguf" -mm "C:\AI\LlamaCPP\mmproj-NEO-MAX-MTP-IQ4_XS-BF16.gguf" -ngl 999 -sm none -mg 0 -fa on -b 2048 -ub 512 -ctk q8_0 -ctv q4_0 -c 348576 -np 1 -n 28192 -t 16 -tb 16 --spec-type draft-mtp --spec-draft-n-max 2 --temp 0.7 --top-p 0.80 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0 --host 127.0.0.1 --port 8080 %*
 
 set "EXIT_CODE=%ERRORLEVEL%"
 popd

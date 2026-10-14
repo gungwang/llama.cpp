@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bluebird Riding a Bicycle</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+      font-family: Arial, sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: 400px;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    /* Ground */
+    .ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: #4CAF50;
+      border-top: 3px solid #388E3C;
+    }
+
+    /* Bike Frame */
+    .bike-frame {
+      fill: none;
+      stroke: #FF6B6B;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Wheels */
+    .wheel {
+      transform-origin: center;
+    }
+
+    .tire {
+      fill: none;
+      stroke: #333;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+
+    .spokes {
+      fill: none;
+      stroke: #8B4513;
+      stroke-width: 0.5;
+    }
+
+    /* Bird */
+    .bird-body {
+      fill: #4169E1;
+    }
+
+    .bird-beak {
+      fill: #FFD700;
+    }
+
+    .bird-eye {
+      fill: #333;
+    }
+
+    .wing {
+      fill: #4682B4;
+    }
+
+    /* Pedals */
+    .pedal {
+      transform-origin: center;
+    }
+
+    /* Clouds for depth */
+    .cloud {
+      fill: white;
+      opacity: 0.7;
+    }
+
+    /* Animations */
+    @keyframes spinFrontWheel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes spinRearWheel {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes flapWing {
+      0% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-2px) scaleY(0.7); }
+      100% { transform: translateY(0) scaleY(1); }
+    }
+
+    @keyframes pedalMotion {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-30deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes bodyBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    @keyframes floatClouds {
+      from { opacity: 0.7; }
+      to { opacity: 0.3; }
+    }
+
+    /* Animation classes */
+    .animate-front-wheel {
+      animation: spinFrontWheel 0.6s linear infinite;
+    }
+
+    .animate-rear-wheel {
+      animation: spinRearWheel 0.7s linear infinite;
+    }
+
+    .animate-wings {
+      animation: flapWing 0.4s ease-in-out infinite;
+    }
+
+    .animate-pedals {
+      animation: pedalMotion 0.6s linear infinite;
+    }
+
+    .animate-body {
+      animation: bodyBounce 0.5s ease-in-out infinite;
+    }
+
+    .animate-clouds {
+      animation: floatClouds 4s ease-in-out infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <!-- Background Clouds -->
+    <svg width="100%" height="100%" viewBox="0 0 400 250" preserveAspectRatio="none">
+      <circle cx="80" cy="60" r="35" class="cloud animate-clouds" />
+      <circle cx="110" cy="70" r="40" class="cloud animate-clouds" />
+      <circle cx="320" cy="50" r="30" class="cloud animate-clouds" />
+    </svg>
+
+    <!-- Bird + Bike Group -->
+    <svg width="300" height="140" viewBox="0 0 300 140">
+      <!-- Rear Wheel -->
+      <g transform="translate(25, 95)">
+        <circle cx="0" cy="0" r="16" class="tire animate-rear-wheel" />
+        <circle cx="0" cy="0" r="8" fill="#F5DEB3" />
+        <!-- Spokes -->
+        <line x1="0" y1="-14" x2="0" y2="14" class="spokes" />
+        <line x1="-14" y1="0" x2="14" y2="0" class="spokes" />
+        <line x1="10" y1="-10" x2="-10" y2="10" class="spokes" />
+        <line x1="-10" y1="-10" x2="10" y2="10" class="spokes" />
+      </g>
+
+      <!-- Bike Frame -->
+      <path d="M 25 95 L 85 60 L 110 95 L 170 95 L 170 70 L 130 40" class="bike-frame" />
+
+      <!-- Front Wheel -->
+      <g transform="translate(170, 95)">
+        <circle cx="0" cy="0" r="16" class="tire animate-front-wheel" />
+        <circle cx="0" cy="0" r="8" fill="#F5DEB3" />
+        <!-- Spokes -->
+        <line x1="0" y1="-14" x2="0" y2="14" class="spokes" />
+        <line x1="-14" y1="0" x2="14" y2="0" class="spokes" />
+        <line x1="10" y1="-10" x2="-10" y2="10" class="spokes" />
+        <line x1="-10" y1="-10" x2="10" y2="10" class="spokes" />
+      </g>
+
+      <!-- Handlebars -->
+      <path d="M 170 40 L 200 35 L 220 45" stroke="#FF6B6B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- Pedals -->
+      <g transform="translate(130, 95)">
+        <circle cx="0" cy="0" r="4" fill="#FFD700" class="pedal animate-pedals" />
+        <line x1="-2" y1="6" x2="2" y2="6" stroke="#333" stroke-width="1.5" />
+      </g>
+
+      <!-- Bird Body -->
+      <g transform="translate(90, 35)">
+        <!-- Wings -->
+        <ellipse cx="-8" cy="2" rx="14" ry="6" class="wing animate-wings" />
+        <ellipse cx="-10" cy="4" rx="12" ry="5" fill="#4682B4" />
+
+        <!-- Body -->
+        <ellipse cx="0" cy="8" rx="13" ry="11" class="bird-body" />
+
+        <!-- Head -->
+        <circle cx="14" cy="6" r="7" class="bird-body" />
+
+        <!-- Beak -->
+        <path d="M 20 6 L 28 9 L 20 12 Z" class="bird-beak" />
+
+        <!-- Eye -->
+        <circle cx="18" cy="4" r="1.5" class="bird-eye" />
+        <circle cx="19" cy="3.5" r="0.6" fill="white" />
+
+        <!-- Wing detail (front) -->
+        <ellipse cx="-5" cy="2" rx="8" ry="4" fill="#4169E1" opacity="0.8" />
+      </g>
+
+    </svg>
+
+    <!-- Ground -->
+    <div class="ground"></div>
+  </div>
+
+  <script>
+    // Optional: Add a subtle parallax effect to clouds
+    window.addEventListener('mousemove', (e) => {
+      const clouds = document.querySelectorAll('.cloud');
+      const moveX = e.clientX / window.innerWidth;
+      clouds.forEach((cloud, i) => {
+        cloud.style.transform = `translateX(${moveX * (i + 1)}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
